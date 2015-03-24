@@ -6,10 +6,17 @@ html, body {
   padding: 0px;
 }
 
+
 .butt {
   position: relative;
   top: -10px;
   left: 240px;
+}
+
+.butt2 {
+  position: relative;
+  top: -30px;
+  left: -20px;
 }
 
 .tool {
@@ -24,13 +31,33 @@ html, body {
   height: 250px;
 }
 
+img {
+  position: relative;
+  height: 250px;
+  width: 250px;
+  top: -15px;
+  left: -16px;
+}
+
 #info {
   width: 600px;
   height: 250px;
 }
 
+.profile {
+  letter-spacing: 1.5px;
+  font-size: 25px;
+  padding: 10px;
+}
+
 #repo {
   height: 350px;
+}
+
+.progress {
+  position: absolute;
+  top: 300px;
+  left: 400px;
 }
 
 md-toolbar p{

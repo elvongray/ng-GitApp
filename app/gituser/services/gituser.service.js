@@ -1,17 +1,19 @@
 angular.module("gituser.module")
-   .factory("userRequest", ['$http', function($http){
-
-     var data = {}
+   .factory("userRequest", ['$http', '$timeout', function($http, $timeout){
+     var data, error;
      return {
+     	 getData: function() {
+     	 	console.log(data);
+     	 	return data || error;
+     	 },
 
-     	 userProfile: function(username) {
-             $http.get('http://api.github.com/users/'+username)
+     	 getProfile: function(username) {
+     	   $http.get('http://api.github.com/users/'+username)
                 .then(function(response){
                     data = response.data;
-                    return data;
                 },function(errResponse){
-                	console.log("shit happens")
-                });        
+                	error = "Unabel to retrieve data please try again";
+                });  
       	 }
      }
    }]);

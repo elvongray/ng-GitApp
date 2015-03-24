@@ -29,7 +29,7 @@
                     <span class="fa fa-plus-circle fa-2x"></span>
                     <md-tooltip>click to enter username</md-tooltip>
                 </md-button>
-                <form ng-submit="" ng-show="git.show" name="userForm">
+                <form ng-submit="git.getUserProfile(git.userName)" ng-show="git.show" name="userForm">
                   <md-input-container>
                     <label>Type Github username</label>
                     <input ng-model="git.userName" placeholder="type and hit enter" name="userName" required>
@@ -47,25 +47,57 @@
             </md-sidenav>
 
             <md-content id="content" flex>
+              <md-progress-circular md-mode="indeterminate" ng-show="git.showProg" class="progress">
+              </md-progress-circular>
               <md-toolbar layout="row" class="gitter-tool">
                  <p>Gitter</p>
               </md-toolbar> 
               <div flex layout="row" layout-align="space-between center">
               <md-card id="image" class="md-whiteframe-z2"> 
                 <md-card-content>
-                   Image
+                   <img src="{{git.userProfile['avatar_url']}}" ng-hide="git.showProg">
                 <md-card-content>
               </md-card> 
 
               <md-card id="info" class="md-whiteframe-z2"> 
-                <md-card-content>
-                   Info
+                <md-card-content ng-hide="git.showProg">
+                   <md-list>
+                       <md-item>
+                          <md-item-content class="profile">
+                             <span class="fa fa-user fa-1x"></span> : 
+                             {{git.userProfile['name']}}
+                             (<a href="{{git.userProfile['html_url']}}">{{git.userProfile['login']}}</a>)
+                          </md-item-content>
+                          <md-divider></md-divider>
+                       </md-item>
+                       <md-item>
+                          <md-item-content class="profile">
+                             <span class="fa fa-envelope fa-1x"></span> : 
+                               <a href="{{git.userProfile['email']}}">{{git.userProfile['email']}}</a>  
+                          </md-item-content>
+                          <md-divider></md-divider>
+                       </md-item>
+                       <md-item>
+                          <md-item-content class="profile">
+                             Following: {{git.userProfile['following']}}
+                          </md-item-content>
+                          <md-divider></md-divider>
+                       </md-item>
+                       <md-item>
+                          <md-item-content class="profile">
+                             Followers: {{git.userProfile['followers']}}
+                          </md-item-content>
+                          <md-divider></md-divider>
+                       </md-item>
+                   </md-list>
                 <md-card-content>
               </md-card>
               </div>
               <md-card  id="repo" class="md-whiteframe-z2" flex> 
                 <md-card-content>
-                   Repo
+                  <md-button aria-label="add" class="md-fab butt2">
+                    <span class="fa fa-plus-circle fa-2x"></span>
+                  </md-button>  
                 <md-card-content>
               </md-card>
             </md-content>
