@@ -1,61 +1,87 @@
 <!DOCTYPE html>
 <html lang="en" ng-app= "GitApp">
-  <head>
-    <title>Angular Material - Starter App</title>
+    <head>
+        <title>GitApp</title>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:400,500,700,400italic">
+        <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
+        <link rel="stylesheet" href="bower_components/angular-material/angular-material.css"/>
+        <link rel="stylesheet" href="assets/app.css"/>
+        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" />
+        <link href="http://www.andela.co/modules/core/img/assets/home/Andela icon.png" rel="shortcut icon" type="image/x-icon">
+    </head>
 
-    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
-    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css"/>
-    <link rel="stylesheet" href="assets/app.css"/>
-  </head>
-
-  <body layout="column" >
-
-    <md-toolbar layout="row">
-      <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">
-        <md-icon md-svg-icon="menu" ></md-icon>
-      </md-button>
-      <h1>Angular Material - Starter App</h1>
-    </md-toolbar>
-
-    <div flex layout="row">
-
-        <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-z2" md-component-id="left">
-          <md-list>
-            <md-item ng-repeat="it in ul.users">
-                <md-button ng-click="ul.selectUser(it)" ng-class="{'selected' : it === ul.selected }">
-                  <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon>
-                  {{it.name}}
+    <body layout="column" ng-controller="GitUser as git">
+        <div flex layout="row">
+            <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-z2" md-component-id="left">
+               <md-toolbar layout="row">
+                 <div class="tool">
+                   <img src="assets/svg/gitty.png" >
+                 </div>
+              </md-toolbar>
+              <div class="addname">
+                <md-button aria-label="add" class="md-fab butt" ng-click="git.showForm()">
+                    <span class="fa fa-plus-circle fa-2x"></span>
+                    <md-tooltip>click to enter username</md-tooltip>
                 </md-button>
-            </md-item>
-          </md-list>
-        </md-sidenav>
+                <form ng-submit="" ng-show="git.show" name="userForm">
+                  <md-input-container>
+                    <label>Type Github username</label>
+                    <input ng-model="git.userName" placeholder="type and hit enter" name="userName" required>
+                      <div ng-messages="userForm.userName.$error">
+                         <div ng-message="required">Please input the username</div>
+                      </div>
+                  </md-input-container>
+                </form>
+              </div>
+                <md-list>
+                    <md-item>
+                
+                    </md-item>
+               </md-list>
+            </md-sidenav>
 
-        <md-content flex id="content">
-          <md-icon md-svg-icon="{{ul.selected.avatar}}" class="avatar"></md-icon>
-          <h2>{{ul.selected.name}}</h2>
-          <p>{{ul.selected.content}}</p>
+            <md-content id="content" flex>
+              <md-toolbar layout="row" class="gitter-tool">
+                 <p>Gitter</p>
+              </md-toolbar> 
+              <div flex layout="row" layout-align="space-between center">
+              <md-card id="image" class="md-whiteframe-z2"> 
+                <md-card-content>
+                   Image
+                <md-card-content>
+              </md-card> 
 
-          <md-button class="share" md-no-ink ng-click="ul.share($event)" aria-label="Share">
-            <md-icon md-svg-icon="share"></md-icon>
-          </md-button>
-        </md-content>
+              <md-card id="info" class="md-whiteframe-z2"> 
+                <md-card-content>
+                   Info
+                <md-card-content>
+              </md-card>
+              </div>
+              <md-card  id="repo" class="md-whiteframe-z2" flex> 
+                <md-card-content>
+                   Repo
+                <md-card-content>
+              </md-card>
+            </md-content>
 
-    </div>
+        </div>
+  </body>
 
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-aria/angular-aria.js"></script>
     <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
 
     <script src="app/app.js"></script>
     <script src="app/gituser/gituser.module.js"></script>
     <script src="app/gituser/controllers/gituser.controller.js"></script>
-    <script src="app/gituser/services/gituser/service.js"></script>
-
-  </body>
+    <script src="app/gituser/services/gituser.service.js"></script>
 </html>

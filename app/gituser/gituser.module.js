@@ -1,1 +1,1 @@
-angular.module("gituser.module", ['ngMaterial']);
+angular.module("gituser.module", ['ngMaterial', 'ngMessages']);

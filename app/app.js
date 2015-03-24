@@ -1,7 +1,12 @@
-angular.module("GitApp", ['gituser.module', 'ngMaterial'])
-       .config(function($mdThemingProvider){
+angular.module("GitApp", ['gituser.module', 
+	                      'ngMaterial', 
+	                      'ngMessages',
+	                      'ngRoute'])
+    .config(["$mdThemingProvider", "$routeProvider",function($mdThemingProvider, $routeProvider){
             $mdThemingProvider.theme('default')
-                .primaryPalette('brown')
+                .primaryPalette('indigo')
                 .accentPalette('red');	
-       });
+
+            
+       }]);
  
