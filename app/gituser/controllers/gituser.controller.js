@@ -1,6 +1,6 @@
 angular.module("gituser.module")
-   .controller("GitUser", ['$mdDialog', 'userRequest', '$timeout','$mdToast','$scope',
-   	                      function($mdDialog, userRequest, $timeout, $mdToast, $scope){
+   .controller("GitUser", ['$mdDialog', 'userRequest', '$timeout','$mdToast','$scope', '$auth',
+   	                      function($mdDialog, userRequest, $timeout, $mdToast, $scope, $auth){
       self = this;
 
       self.show = false;
@@ -21,6 +21,11 @@ angular.module("gituser.module")
 
       self.showToasts = function() {
       	  self.showToast = !self.showToast;
+      }
+
+      self.authenticate = function(provider) {
+      	  console.log("crap");
+      	  $auth.authenticate(provider);
       }
 
       self.getUserProfile = function(username) {

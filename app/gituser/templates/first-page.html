@@ -1,0 +1,73 @@
+ <md-progress-circular md-mode="indeterminate" ng-show="git.showProg" class="progress">
+              </md-progress-circular>
+              <md-toolbar layout="row" class="gitter-tool">
+                 <p>Gitter</p>
+              </md-toolbar> 
+              <div flex layout="row" layout-align="space-between center">
+              <md-card id="image" class="md-whiteframe-z2"> 
+                <md-card-content>
+                   <img src="{{git.userProfile['avatar_url']}}" ng-hide="git.showProg">
+                <md-card-content>
+              </md-card> 
+
+              <md-card id="info" class="md-whiteframe-z2"> 
+                <md-card-content ng-hide="git.showProg">
+                   <md-list>
+                       <md-item>
+                          <md-item-content class="profile">
+                             <span class="fa fa-user fa-1x"></span> : 
+                             {{git.userProfile['name']}}
+                             (<a href="{{git.userProfile['html_url']}}">{{git.userProfile['login']}}</a>)
+                          </md-item-content>
+                          <md-divider></md-divider>
+                       </md-item>
+                       <md-item>
+                          <md-item-content class="profile">
+                             <span class="fa fa-envelope fa-1x"></span> : 
+                               <a href="{{git.userProfile['email']}}">{{git.userProfile['email']}}</a>  
+                          </md-item-content>
+                          <md-divider></md-divider>
+                       </md-item>
+                       <md-item>
+                          <md-item-content class="profile">
+                             Following: {{git.userProfile['following']}}
+                          </md-item-content>
+                          <md-divider></md-divider>
+                       </md-item>
+                       <md-item>
+                          <md-item-content class="profile">
+                             Followers: {{git.userProfile['followers']}}
+                          </md-item-content>
+                          <md-divider></md-divider>
+                       </md-item>
+                   </md-list>
+                <md-card-content>
+              </md-card>
+              </div>
+                <md-card  id="repo" class="md-whiteframe-z2 inset" flex> 
+                  <md-card-content>
+                    <md-list class="repolists">
+                      <md-item ng-repeat="repo in git.userRepo">
+                          <md-item-content>
+                              <md-button class="md-raised md-primary repobutt">{{repo.name}}</md-button>   
+                          </md-item-content>
+                      </md-item>
+                    </md-list>
+                    <md-button aria-label="add" class="md-fab md-fab butt2" ng-click="git.showToasts()">
+                      <span class="fa fa-plus-circle fa-2x"></span>
+                      <md-tooltip>click for options</md-tooltip>
+                    </md-button>
+                    <div ng-show="git.showToast" class="toasts">
+                       <md-button class="md-raised md-warn toast" ng-click="git.displayRepo()">
+                          Repos
+                       </md-button> 
+                       <md-button class="md-raised md-warn toast">
+                          Follwing
+                       </md-button>
+                       <md-button class="md-raised md-warn toast">Followers</md-button> 
+                       <md-button class="md-raised md-warn toast" ng-click="git.authenticate('github')">
+                           More
+                       </md-button>
+                    </div> 
+                  </md-card-content>
+                </md-card>
