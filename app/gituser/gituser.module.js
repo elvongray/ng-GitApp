@@ -1,1 +1,4 @@
-angular.module("gituser.module", ['ngMaterial', 'ngMessages']);
+angular.module("gituser.module", 
+	           ['ngMaterial', 
+	            'ngMessages', 
+	            'ngStorage']);
