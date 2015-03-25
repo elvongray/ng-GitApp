@@ -46,10 +46,12 @@
               </div>
                 <md-card  id="repo" class="md-whiteframe-z2 inset" flex> 
                   <md-card-content>
-                    <md-list class="repolists">
+                    <md-list class="repolists" ng-show="git.showRepo">
                       <md-item ng-repeat="repo in git.userRepo">
                           <md-item-content>
-                              <md-button class="md-raised md-primary repobutt">{{repo.name}}</md-button>   
+                              <md-button class="md-raised md-primary repobutt" ng-href="{{repo.html_url}}">
+                                 {{repo.name}}
+                              </md-button>   
                           </md-item-content>
                       </md-item>
                     </md-list>
@@ -61,13 +63,18 @@
                        <md-button class="md-raised md-warn toast" ng-click="git.displayRepo()">
                           Repos
                        </md-button> 
-                       <md-button class="md-raised md-warn toast">
+                       <md-button class="md-raised md-warn toast" ng-click="git.displayFollowing()">
                           Follwing
                        </md-button>
-                       <md-button class="md-raised md-warn toast">Followers</md-button> 
-                       <md-button class="md-raised md-warn toast" ng-click="git.authenticate('github')">
-                           More
+                       <md-button class="md-raised md-warn toast" ng-click="git.displayFollower()">
+                          Followers
+                       </md-button> 
+                       <md-button class="md-raised md-warn toast" ng-href="http://github.com/login/oauth/authorize?scope=user,public_repo&client_id=b110e1f0e8b4ee780aea">
+                           authenticate
                        </md-button>
+                       <md-button class="md-raised md-warn toast" ng-click="git.location()">
+                           login
+                       </md-button> 
                     </div> 
                   </md-card-content>
                 </md-card>

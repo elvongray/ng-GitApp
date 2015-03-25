@@ -2,9 +2,9 @@ angular.module("GitApp", ['gituser.module',
 	                      'ngMaterial', 
 	                      'ngMessages',
 	                      'ngRoute',
-	                      'satellizer'])
-    .config(["$mdThemingProvider", "$routeProvider", "$authProvider",
-    	     function($mdThemingProvider, $routeProvider, $authProvider){
+                          'ngStorage'])
+    .config(["$mdThemingProvider", "$routeProvider","$httpProvider",
+    	     function($mdThemingProvider, $routeProvider, $httpProvider){
             $mdThemingProvider.theme('default')
                 .primaryPalette('indigo')
                 .accentPalette('red');	
@@ -15,13 +15,14 @@ angular.module("GitApp", ['gituser.module',
             	redirectTo: "/404"
             });
 
-            $authProvider.github({
-                url:  "http://localhost:8000/",
-            	clientId: "b110e1f0e8b4ee780aea",
-                requiredUrlParams: ['scope'],
-            	redirectUri: "http://localhost:8000/",
-            	scope: ['user', 'public_repo'],
-                scopeDelimiter: ','
-            });
+            $httpProvider.defaults.headers.post['Access-Control-Allow-Origin'] = "http://localhost:8000";
+            $httpProvider.defaults.headers.post['Access-Control-Allow-Methods'] = "POST, GET, OPTIONS";
+
+            $httpProvider.defaults.useXDomain = true;
+            $httpProvider.defaults.withCredentials = true;
+            delete $httpProvider.defaults.headers.common["X-Requested-With"];
+            $httpProvider.defaults.headers.common["Accept"] = "application/json";
+            $httpProvider.defaults.headers.common["Content-Type"] = "application/json";
+             
        }]);
  

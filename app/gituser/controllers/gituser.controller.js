@@ -1,6 +1,6 @@
 angular.module("gituser.module")
-   .controller("GitUser", ['$mdDialog', 'userRequest', '$timeout','$mdToast','$scope', '$auth',
-   	                      function($mdDialog, userRequest, $timeout, $mdToast, $scope, $auth){
+   .controller("GitUser", ['$mdDialog', 'userRequest', '$timeout', '$location',
+   	                      function($mdDialog, userRequest, $timeout, $location){
       self = this;
 
       self.show = false;
@@ -9,26 +9,22 @@ angular.module("gituser.module")
 
       self.userRepo = [];
 
-      self.showToast = false;
+      self.showRepo = false;
 
       self.stable;
 
-      self.userProfile;
+      self.userProfile = userRequest.getData();
       
       self.showForm = function() {
           self.show = !self.show
       }
 
       self.showToasts = function() {
-      	  self.showToast = !self.showToast;
+      	  self.showToast = !self.showToast; 
       }
 
-      self.authenticate = function(provider) {
-      	  console.log("crap");
-      	  $auth.authenticate(provider)
-      	     .then(function(response) {
-      	         console.log(response.data);	
-      	     });
+      self.location = function() {
+           userRequest.auth($location.absUrl().split(/=|\//)[4]); 
       }
 
       self.getUserProfile = function(username) {
@@ -51,14 +47,15 @@ angular.module("gituser.module")
 
       self.displayRepo = function() {
   	      self.showToast = false;
+  	      self.showRepo = true;
   	      self.userRepo = userRequest.getRepo();
       }
 
       self.displayFollower = function() {
-
+          self.showRepo = false
       }
 
       self.displayFollowing = function() {
-
+          self.showRepo = false;
       }
    }]);
