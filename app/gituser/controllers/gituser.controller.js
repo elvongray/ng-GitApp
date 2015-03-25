@@ -25,7 +25,10 @@ angular.module("gituser.module")
 
       self.authenticate = function(provider) {
       	  console.log("crap");
-      	  $auth.authenticate(provider);
+      	  $auth.authenticate(provider)
+      	     .then(function(response) {
+      	         console.log(response.data);	
+      	     });
       }
 
       self.getUserProfile = function(username) {
