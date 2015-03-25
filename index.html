@@ -39,11 +39,6 @@
                   </md-input-container>
                 </form>
               </div>
-                <md-list>
-                    <md-item>
-                
-                    </md-item>
-               </md-list>
             </md-sidenav>
 
             <md-content id="content" flex>
@@ -93,15 +88,29 @@
                 <md-card-content>
               </md-card>
               </div>
-              <md-card  id="repo" class="md-whiteframe-z2" flex> 
-                <md-card-content>
-                  <md-button aria-label="add" class="md-fab butt2">
-                    <span class="fa fa-plus-circle fa-2x"></span>
-                  </md-button>  
-                <md-card-content>
-              </md-card>
+                <md-card  id="repo" class="md-whiteframe-z2 inset" flex> 
+                  <md-card-content>
+                    <md-list class="repolists">
+                      <md-item ng-repeat="repo in git.userRepo">
+                          <md-item-content>
+                              <md-button class="md-raised md-primary repobutt">{{repo.name}}</md-button>   
+                          </md-item-content>
+                      </md-item>
+                    </md-list>
+                    <md-button aria-label="add" class="md-fab md-fab butt2" ng-click="git.showToasts()">
+                      <span class="fa fa-plus-circle fa-2x"></span>
+                      <md-tooltip>click for options</md-tooltip>
+                    </md-button>
+                    <div ng-show="git.showToast" class="toasts">
+                       <md-button class="md-raised md-primary toast" ng-click="git.displayRepo()">
+                          Repos
+                       </md-button> 
+                       <md-button class="md-raised md-primary toast">Follwing</md-button>
+                       <md-button class="md-raised md-primary toast">Followers</md-button> 
+                    </div> 
+                  </md-card-content>
+                </md-card>
             </md-content>
-
         </div>
   </body>
 

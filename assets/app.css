@@ -19,12 +19,37 @@ html, body {
   left: -20px;
 }
 
+.repolists {
+  position: absolute;
+  left: 100px;
+}
+
+.repolists md-item {
+  display: inline-block;
+}
+
+.repobutt {
+   margin-left: 10px;
+   margin-top: 20px;
+   padding: 15px;
+}
+
 .tool {
   width: 200px;
   padding-top: 10px;
   padding-left: 10px;
 }
 
+.toast {
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+.toasts {
+   background-color: rgba(0, 0, 0, 0.5); 
+   width: 270px;
+   height: 40px;
+}
 
 #image {
   width: 250px;
